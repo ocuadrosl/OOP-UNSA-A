@@ -35,7 +35,7 @@ void Vehicle::SetNumberOfSits(uint16_t numberOfSits)
 
 }
 
-uint16_t Vehicle::GetNumberOfSits()
+uint16_t Vehicle::GetNumberOfSits() const
 {
     return NumberOfSits;
 }
@@ -44,12 +44,15 @@ void Vehicle::SetColor(std::string color)
 {
     this->Color  = color;
 }
-std::string Vehicle::GetColor()
+std::string Vehicle::GetColor() const
 {
     return Color;
 }
 
-
+Vehicle& Vehicle::operator=(const Vehicle&)
+{
+    std::puts("Operator =");
+}
 
 
 

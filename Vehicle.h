@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <cinttypes>
+#include <memory>
 
 class Vehicle
 {
@@ -14,14 +15,17 @@ private:
 public:
 
     void SetNumberOfSits(uint16_t numberOfSits);
-    uint16_t GetNumberOfSits();
-
     void SetColor(std::string color);
-    std::string GetColor();
+
+    uint16_t GetNumberOfSits() const;
+    std::string GetColor() const; //metodos constantes
 
     Vehicle(); //default
     Vehicle(uint16_t numberOfSits, std::string color); //llama de form automatica al crear el objeto
     Vehicle(const Vehicle& otherVehicle);
+    Vehicle& operator=(const Vehicle& otherVehicle);
+
+    ~Vehicle(){std::cout<<"destroyed"<<std::endl;}
 
 
 };
