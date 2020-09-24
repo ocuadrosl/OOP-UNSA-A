@@ -19,7 +19,14 @@ Vehicle::Vehicle(const Vehicle& otherVehicle):
     NumberOfSits{otherVehicle.NumberOfSits},
     Color{otherVehicle.Color}
 {
-    std::cout<<"Vehicle Created Copy"<<std::endl;
+    std::cout<<"Copy"<<std::endl;
+}
+
+Vehicle::Vehicle(Vehicle&& otherVehicle):
+    NumberOfSits{otherVehicle.NumberOfSits},
+    Color{otherVehicle.Color}
+{
+    std::cout<<"Move"<<std::endl;
 }
 
 void Vehicle::SetNumberOfSits(uint16_t numberOfSits)

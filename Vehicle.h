@@ -12,6 +12,7 @@ private:
     uint16_t NumberOfSits{1};
     std::string Color{"White"};
 
+
 public:
 
     void SetNumberOfSits(uint16_t numberOfSits);
@@ -21,9 +22,11 @@ public:
     std::string GetColor() const; //metodos constantes
 
     Vehicle(); //default
-    Vehicle(uint16_t numberOfSits, std::string color); //llama de form automatica al crear el objeto
-    Vehicle(const Vehicle& otherVehicle);
+    Vehicle(uint16_t numberOfSits, std::string color); //explicit
+    Vehicle(const Vehicle& otherVehicle); //copy constructor
     Vehicle& operator=(const Vehicle& otherVehicle);
+    Vehicle(Vehicle&& otherVehicle); //rvalues <- move
+
 
     ~Vehicle(){std::cout<<"destroyed"<<std::endl;}
 
