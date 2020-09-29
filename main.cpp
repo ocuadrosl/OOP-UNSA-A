@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Vehicle.h"
+#include "Car.h"
 #include <vector>
 #include <memory>
 
@@ -11,6 +12,7 @@ void print(const Vehicle& vehicle) //vehicle is a copy
 {
     std::cout << vehicle.GetNumberOfSits() << std::endl;
     std::cout << vehicle.GetColor() << std::endl;
+
 }
 
 void printSimple(Vehicle vehicle) //vehicle is a copy
@@ -21,15 +23,17 @@ void printSimple(Vehicle vehicle) //vehicle is a copy
 
 
 
-void foo(int&& x)
+int foo(int&& x) //r
 {
-    x++;
-    std::cout<<x<<std::endl;
+
+    std::cout<<"r-value"<<std::endl;
+    return ++x;
 }
-void foo(int& x)
+
+int foo(int& x) //l
 {
-    x++;
-    std::cout<<x<<std::endl;
+    std::cout<<"l-value"<<std::endl;
+    return ++x;
 }
 
 
@@ -38,12 +42,15 @@ int main()
 {
 
 
-    Vehicle car;
-    printSimple( std::move(car) );//simule una referencia
+
+    Car car;
+    print(car);
+    printSimple(car);//simule una referencia
 
 
 
-   /*
+
+    /*
 
     //verbosity ----
     std::unique_ptr<Vehicle> Car = std::make_unique<Vehicle>(1, "Red");

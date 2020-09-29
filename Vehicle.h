@@ -7,7 +7,7 @@
 
 class Vehicle
 {
-private:
+public:
 
     uint16_t NumberOfSits{1};
     std::string Color{"White"};
@@ -23,12 +23,16 @@ public:
 
     Vehicle(); //default
     Vehicle(uint16_t numberOfSits, std::string color); //explicit
-    Vehicle(const Vehicle& otherVehicle); //copy constructor
+
+    Vehicle(const Vehicle& otherVehicle); //copy constructor L-value
+
     Vehicle& operator=(const Vehicle& otherVehicle);
-    Vehicle(Vehicle&& otherVehicle); //rvalues <- move
+
+    Vehicle(Vehicle&& otherVehicle); //rvalues <- move //R-value
 
 
-    ~Vehicle(){std::cout<<"destroyed"<<std::endl;}
+
+
 
 
 };
