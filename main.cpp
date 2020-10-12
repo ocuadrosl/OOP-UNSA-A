@@ -3,6 +3,8 @@
 #include "Car.h"
 #include <vector>
 #include <memory>
+#include "Queen.h"
+#include "Pawn.h"
 
 //por defecto c++ pasa por valor = crea una copia
 //reference = alias = "address"
@@ -11,17 +13,10 @@
 void print(const Vehicle& vehicle) //vehicle is a copy
 {
     std::cout << vehicle.GetNumberOfSits() << std::endl;
+    std::cout << vehicle.GetNumberOfWheels() << std::endl;
     std::cout << vehicle.GetColor() << std::endl;
 
 }
-
-void printSimple(Vehicle vehicle) //vehicle is a copy
-{
-    std::cout << vehicle.GetNumberOfSits() << std::endl;
-    std::cout << vehicle.GetColor() << std::endl;
-}
-
-
 
 int foo(int&& x) //r
 {
@@ -37,16 +32,17 @@ int foo(int& x) //l
 }
 
 
-
 int main()
 {
 
+    std::unique_ptr<Piece> pawn1  = std::make_unique<Pawn>("White");
+    std::unique_ptr<Piece> pawn2  = std::make_unique<Pawn>("");
+    std::unique_ptr<Piece> pawn3  = std::make_unique<Pawn>("");
+    std::unique_ptr<Piece> pawn4  = std::make_unique<Pawn>("White");
 
 
-    Car car;
-    print(car);
-    printSimple(car);//simule una referencia
-
+    std::cout<<pawn4->GetID()<<std::endl;
+    std::cout<<pawn4->GetColor()<<std::endl;
 
 
 

@@ -7,9 +7,12 @@
 
 class Vehicle
 {
-public:
+
+
+protected:
 
     uint16_t NumberOfSits{1};
+    uint16_t NumberOfWheels{1};
     std::string Color{"White"};
 
 
@@ -19,20 +22,21 @@ public:
     void SetColor(std::string color);
 
     uint16_t GetNumberOfSits() const;
+    uint16_t GetNumberOfWheels() const;
     std::string GetColor() const; //metodos constantes
 
     Vehicle(); //default
-    Vehicle(uint16_t numberOfSits, std::string color); //explicit
+
+    Vehicle(uint16_t numberOfSits,
+            uint16_t numberOfWheels,
+            std::string color); //explicit
 
     Vehicle(const Vehicle& otherVehicle); //copy constructor L-value
 
     Vehicle& operator=(const Vehicle& otherVehicle);
 
     Vehicle(Vehicle&& otherVehicle); //rvalues <- move //R-value
-
-
-
-
+    ~Vehicle(){ std::cout<<"vehicle destroyed\n";}
 
 
 };

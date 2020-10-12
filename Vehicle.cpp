@@ -1,19 +1,24 @@
 #include "Vehicle.h"
 
-Vehicle::Vehicle(uint16_t numberOfSits, std::string color) :
+Vehicle::Vehicle(uint16_t numberOfSits,
+                 uint16_t numberOfWheels,
+                 std::string color) :
     NumberOfSits{numberOfSits},
+    NumberOfWheels{numberOfWheels},
     Color{color}
 
 {
-
     std::cout<<"Vehicle Created Explicit"<<std::endl;
 }
+
 
 
 Vehicle::Vehicle()
 {
  std::cout<<"Vehicle Created Default"<<std::endl;
+
 }
+
 
 Vehicle::Vehicle(const Vehicle& otherVehicle):
     NumberOfSits{otherVehicle.NumberOfSits},
@@ -59,6 +64,11 @@ std::string Vehicle::GetColor() const
 Vehicle& Vehicle::operator=(const Vehicle&)
 {
     std::puts("Operator =");
+}
+
+uint16_t Vehicle::GetNumberOfWheels() const
+{
+    return NumberOfWheels;
 }
 
 
