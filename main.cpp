@@ -6,74 +6,63 @@
 #include "Queen.h"
 #include "Pawn.h"
 
-//por defecto c++ pasa por valor = crea una copia
-//reference = alias = "address"
-//paso por referencia permite modificar los valores
+#include "Functor.h"
+#include "MyVector.h"
 
-void print(const Vehicle& vehicle) //vehicle is a copy
+#include <functional>
+#include <algorithm>
+
+
+void AreaCircle(float &radius)
 {
-    std::cout << vehicle.GetNumberOfSits() << std::endl;
-    std::cout << vehicle.GetNumberOfWheels() << std::endl;
-    std::cout << vehicle.GetColor() << std::endl;
 
+    //float area = 3.1415f * std::pow(radius,2);
+
+    radius = 3.1415f * std::pow(radius,2);
+
+    //std::cout<<"Function: "<<area<<std::endl;
+    //return area;
 }
 
-int foo(int&& x) //r
-{
 
-    std::cout<<"r-value"<<std::endl;
-    return ++x;
-}
 
-int foo(int& x) //l
+void TestFunctions(const std::function<void(float&)>& func)
 {
-    std::cout<<"l-value"<<std::endl;
-    return ++x;
+    std::vector<float> radius(10);
+
+    for(auto it = radius.begin() ; it != radius.end(); ++it)
+    {
+        *it  = std::rand() % 100;
+    }
+
+    std::for_each(radius.begin(), radius.end(), func);
+    //std::transform tarea
+
+    for(auto a: radius)
+    {
+        std::cout<<a<<"\n";
+
+    }
+
+
 }
 
 
 int main()
 {
 
-    std::unique_ptr<Piece> pawn1  = std::make_unique<Pawn>("White");
-    std::unique_ptr<Piece> pawn2  = std::make_unique<Pawn>("");
-    std::unique_ptr<Piece> pawn3  = std::make_unique<Pawn>("");
-    std::unique_ptr<Piece> pawn4  = std::make_unique<Pawn>("White");
+    MyVector a{5}, b{5}, c{5};
+
+    a[1] = 6;
+    b[1] = 4;
+
+    std::cout << a[1] + b;
 
 
-    std::cout<<pawn4->GetID()<<std::endl;
-    std::cout<<pawn4->GetColor()<<std::endl;
-
-
-
-    /*
-
-    //verbosity ----
-    std::unique_ptr<Vehicle> Car = std::make_unique<Vehicle>(1, "Red");
-    //auto carPtr1 = std::make_unique<Vehicle>(); //auto C++ defina el tipo de dato
-    //el puntero Car (stack) tiene la direcicon de un objeto tipo Vehicle -> heap
-
-    auto carPtr2 = std::make_unique<Vehicle>(); //no memoria en la heap
+   /* std::function< void(float&) > areaC_Func = AreaCircle;
+    std::function< void(float&) > areaC_Obj  = Functor();
+    TestFunctions(areaC_Obj);
 */
-
-/*
-    Vehicle *carRaw1 =  new Vehicle(4, "Red");
-    std::cout<<carRaw1->GetColor()<<std::endl;
-
-    Vehicle *carRaw2 =  nullptr;
-    carRaw2 = carRaw1;
-    auto carRaw3 = carRaw2;
-
-    carRaw3->SetColor("Blue");
-
-    std::cout<<carRaw1->GetColor()<<std::endl;
-
-    //print(*carPtr);
-*/
-
-
-    //por norma NO SE CREA PUNTEROS!!!!!
-
 
     return 0;
 }

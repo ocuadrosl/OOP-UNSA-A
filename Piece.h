@@ -10,6 +10,7 @@ class Piece
 protected:
     bool Status{};
     std::string Color{};
+    uint16_t ID{};
 
 public:
 
