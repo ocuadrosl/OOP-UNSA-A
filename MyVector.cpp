@@ -1,5 +1,7 @@
 #include "MyVector.h"
 
+namespace oop
+{
 MyVector::MyVector(const std::size_t& size)
 {
 
@@ -94,5 +96,58 @@ int& MyVector::operator[](const unsigned& index)
 {
     return Data[index];
 }
+
+
+bool operator == (const MyVector& a, const MyVector& b)
+{
+
+    for(unsigned i=0; i< a.Data.size(); ++i)
+    {
+        if(a.Data[i] != b.Data[i])
+        {
+            return false;
+        }
+
+    }
+        return true;
+
+}
+
+
+bool operator != (const MyVector& a, const MyVector& b)
+{
+    return !(a == b);
+}
+
+bool operator < (const MyVector& a, const MyVector& b)
+{
+    return std::accumulate(a.Data.begin(), a.Data.end(), 0) <
+           std::accumulate(b.Data.begin(), b.Data.end(), 0);
+}
+
+bool operator > (const MyVector& a, const MyVector& b)
+{
+    return b < a;
+}
+
+bool operator <= (const MyVector& a, const MyVector& b)
+{
+
+    //return (a<b) || (a==b); //eder
+    //return (a<b || a==b); //luis
+    //return  !(a>b) || (a == b); //cesar
+    return !(a > b);
+
+}
+
+bool operator >= (const MyVector& a, const MyVector& b)
+{
+    return !(a<b);
+}
+
+}
+
+
+
 
 

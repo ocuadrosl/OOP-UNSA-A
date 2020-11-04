@@ -8,6 +8,8 @@
 
 #include "Functor.h"
 #include "MyVector.h"
+#include "Utils.h"
+
 
 #include <functional>
 #include <algorithm>
@@ -35,7 +37,12 @@ void TestFunctions(const std::function<void(float&)>& func)
         *it  = std::rand() % 100;
     }
 
-    std::for_each(radius.begin(), radius.end(), func);
+
+    float rad = 5;
+    const auto& area = [rad](float &val){ val = 3.1415 * std::pow(rad,2);};
+
+
+    std::for_each(radius.begin(), radius.end(), area);
     //std::transform tarea
 
     for(auto a: radius)
@@ -47,22 +54,28 @@ void TestFunctions(const std::function<void(float&)>& func)
 
 }
 
-
 int main()
 {
 
-    MyVector a{5}, b{5}, c{5};
+  /*  oop::MyVector a{5}, b{5}, c{5};
 
-    a[1] = 6;
-    b[1] = 4;
-
-    std::cout << a[1] + b;
-
-
-   /* std::function< void(float&) > areaC_Func = AreaCircle;
-    std::function< void(float&) > areaC_Obj  = Functor();
-    TestFunctions(areaC_Obj);
+    a[1] = 3;
+    b[1] = 9;
+    auto  sum =  [a] (int x, int y) {  return x + y + a;  };
+    std::cout<< sum(2,5) ;
+    //std::cout << utils::EuclideanDistance(a,b) <<std::endl;
 */
+
+
+
+
+
+    std::function< void(float&) > areaC_Func = AreaCircle;
+    std::function< void(float&) > areaC_Obj  = Functor();
+
+
+    TestFunctions(areaC_Func);
+
 
     return 0;
 }
