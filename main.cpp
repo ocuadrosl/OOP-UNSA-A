@@ -9,10 +9,17 @@
 #include "Functor.h"
 #include "MyVector.h"
 #include "Utils.h"
+#include "Factorial.h"
+#include "Fibonacci.h"
+#include "BubbleSort.h"
 
 
 #include <functional>
 #include <algorithm>
+#include <typeinfo>
+
+#include "OperatorOverloading.h"
+
 
 
 void AreaCircle(float &radius)
@@ -38,11 +45,7 @@ void TestFunctions(const std::function<void(float&)>& func)
     }
 
 
-    float rad = 5;
-    const auto& area = [rad](float &val){ val = 3.1415 * std::pow(rad,2);};
-
-
-    std::for_each(radius.begin(), radius.end(), area);
+    std::for_each(radius.begin(), radius.end(), func);
     //std::transform tarea
 
     for(auto a: radius)
@@ -54,28 +57,73 @@ void TestFunctions(const std::function<void(float&)>& func)
 
 }
 
+
 int main()
 {
 
-  /*  oop::MyVector a{5}, b{5}, c{5};
+/*
+    std::vector<int> data(5, 0);
+    data[4] = 1;
+    data[3] = 2;
+    data[2] = -1;
+    data[1] = 4;
+    data[0] = 5;
 
-    a[1] = 3;
-    b[1] = 9;
-    auto  sum =  [a] (int x, int y) {  return x + y + a;  };
-    std::cout<< sum(2,5) ;
-    //std::cout << utils::EuclideanDistance(a,b) <<std::endl;
+    BubbleSort<4>::Sort(data);
+
+    for(auto val: data)
+    {
+        std::cout<<val<<"\n";
+    }
+
 */
 
 
 
+    int fa = Factorial<10>::Result;
+    int fi = Fibonacci<30>::Result;
+    std::cout<<fi<<"\n";
 
 
-    std::function< void(float&) > areaC_Func = AreaCircle;
+
+    //int f = Factorial<int>(3);
+    //std::cout<<f<<"\n";
+
+
+
+    /*oop::MyVector a{10}, b{10};
+
+    a[4] = 6;
+    b[3] = 10;
+
+    std::vector<int> gravity(10, 0);
+    std::vector<int> velocity(10, 1);
+
+    int x = velocity.size();
+
+    using  vectorInt = std::vector<int>;
+    using  MyVector = oop::MyVector;
+
+    //truco
+    const auto& euclideanDistance = utils::EuclideanDistance<vectorInt, vectorInt, 10>;
+
+    auto d = euclideanDistance(gravity, velocity);
+
+    std::cout<<d<<"\n";
+*/
+
+    //utils::EuclideanDistance<vectorInt, vectorInt>(gravity, velocity, 10);
+    //utils::EuclideanDistance<vector, vector>(a, b, 10);
+
+
+
+
+
+    /*std::function< void(float&) > areaC_Func = AreaCircle;
     std::function< void(float&) > areaC_Obj  = Functor();
 
-
     TestFunctions(areaC_Func);
-
-
+    */
     return 0;
 }
+

@@ -6,7 +6,7 @@ MyVector::MyVector(const std::size_t& size)
 {
 
     Data = std::vector<int>(size, 0);
-    std::cout<<"Vector of size "<<size<<" created\n";
+    //std::cout<<"Vector of size "<<size<<" created\n";
 
 }
 
@@ -29,7 +29,6 @@ MyVector operator+ (const MyVector& a, const int& b)
 MyVector operator+ (const int& b, const MyVector& a)
 {
     //To-Do consistency test
-
     MyVector result{a.Data.size()};
 
     for(std::size_t i = 0; i < result.Data.size(); ++i)
@@ -109,7 +108,7 @@ bool operator == (const MyVector& a, const MyVector& b)
         }
 
     }
-        return true;
+    return true;
 
 }
 

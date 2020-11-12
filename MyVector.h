@@ -17,7 +17,7 @@ private:
 public:
     MyVector(const std::size_t& size=0);
 
-    std::size_t GetSize() const { return Data.size(); }
+    std::size_t size() const { return Data.size(); }
 
     const int& operator[](const unsigned& index) const;
 
