@@ -23,7 +23,6 @@ struct Factorial
 template<>
 struct Factorial<0> //por defecto
 {
-
     enum{Result = 1};
 };
 

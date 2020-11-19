@@ -61,29 +61,32 @@ void TestFunctions(const std::function<void(float&)>& func)
 int main()
 {
 
-/*
-    std::vector<int> data(5, 0);
-    data[4] = 1;
-    data[3] = 2;
+
+    std::vector<float> data(6, 0);
+    data[0] = -9;
+    data[3] = -20.f;
     data[2] = -1;
     data[1] = 4;
-    data[0] = 5;
+    data[4] = 45;
+    data[5] = 8;
 
-    BubbleSort<4>::Sort(data);
+    BubbleSort<std::vector<float>, 6>::Sort(data);
+    //BubbleSortRegular<std::vector<float>, 5>(data);
 
     for(auto val: data)
     {
+
         std::cout<<val<<"\n";
     }
 
-*/
 
 
 
-    int fa = Factorial<10>::Result;
+
+    /*int fa = Factorial<10>::Result;
     int fi = Fibonacci<30>::Result;
     std::cout<<fi<<"\n";
-
+*/
 
 
     //int f = Factorial<int>(3);
