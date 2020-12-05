@@ -26,17 +26,6 @@ inline double EuclideanDistance(const VectorT1& a, const VectorT2& b)
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 void foo(const std::function<double(int, int)>& lambda)
 {
     std::cout<<lambda(1,2)<<std::endl;

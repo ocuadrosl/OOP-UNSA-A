@@ -19,7 +19,10 @@
 #include <typeinfo>
 
 #include "OperatorOverloading.h"
-
+#include "ComplexNumber.h"
+#include "Lucas.h"
+#include "DotProduct.h"
+#include "Matrix.h"
 
 
 void AreaCircle(float &radius)
@@ -62,6 +65,47 @@ int main()
 {
 
 
+
+/*  hilo::Matrix<float> matrix{10,90000000};
+    matrix[0][0] =  20;
+    matrix[1][1] =  10;
+
+    std::cout<<matrix.ComputeInnerSum()<<"\n";
+    std::cout<<matrix.ComputeInnerSumThread()<<"\n";
+*/
+
+
+    hilo::Matrix<ComplexNumber> matrix{10,90000000};
+    matrix[0][0] =  {20, 5};
+    matrix[1][1] =  {5, -20};
+
+    //std::cout<<matrix.ComputeInnerSum()<<"\n";
+    std::cout<<matrix.ComputeInnerSumThread()<<"\n";
+    std::cout<<matrix.ComputeInnerSumThreadV2()<<"\n";
+
+
+
+/*
+    DotProduct dp;
+    std::cout<<dp({1,2,3}, {1,2,3})<<"\n";
+*/
+
+    /*
+    std::cout<<Lucas<5>::Result<<std::endl;
+    std::cout<<Lucas2(5)<<std::endl;
+*/
+
+
+
+/*
+
+    ComplexNumber a{3, 4}, b{2, -5};
+
+    std::cout << a*b;
+*/
+
+
+/*
     std::vector<float> data(6, 0);
     data[0] = -9;
     data[3] = -20.f;
@@ -78,7 +122,7 @@ int main()
 
         std::cout<<val<<"\n";
     }
-
+*/
 
 
 
