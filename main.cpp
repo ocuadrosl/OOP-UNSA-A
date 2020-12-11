@@ -66,6 +66,9 @@ int main()
 
 
 
+
+
+
 /*  hilo::Matrix<float> matrix{10,90000000};
     matrix[0][0] =  20;
     matrix[1][1] =  10;
@@ -74,7 +77,7 @@ int main()
     std::cout<<matrix.ComputeInnerSumThread()<<"\n";
 */
 
-
+/*
     hilo::Matrix<ComplexNumber> matrix{10,90000000};
     matrix[0][0] =  {20, 5};
     matrix[1][1] =  {5, -20};
@@ -82,7 +85,7 @@ int main()
     //std::cout<<matrix.ComputeInnerSum()<<"\n";
     std::cout<<matrix.ComputeInnerSumThread()<<"\n";
     std::cout<<matrix.ComputeInnerSumThreadV2()<<"\n";
-
+*/
 
 
 /*
