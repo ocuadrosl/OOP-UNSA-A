@@ -41,6 +41,7 @@ Type* Singleton<Type>::Instance = nullptr;
 
 class Board: public Singleton<Board>// template recursivo
 {
+public:
 
 
 };

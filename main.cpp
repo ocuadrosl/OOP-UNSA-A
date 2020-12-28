@@ -61,23 +61,30 @@ void TestFunctions(const std::function<void(float&)>& func)
 }
 
 
+
 int main()
 {
 
 
-
-
-
-
-/*  hilo::Matrix<float> matrix{10,90000000};
+    hilo::Matrix<float> matrix{10,9};
     matrix[0][0] =  20;
     matrix[1][1] =  10;
 
-    std::cout<<matrix.ComputeInnerSum()<<"\n";
-    std::cout<<matrix.ComputeInnerSumThread()<<"\n";
-*/
+    hilo::Matrix<float>::Iterator it = matrix.Begin();
+    *it = 15;
+    *(++it) = 16;
 
-/*
+    for(auto it = matrix.Begin(); it != matrix.End(); ++it)
+    {
+        std::cout<<*it<<" ";
+    }
+
+
+    // std::cout<<matrix.ComputeInnerSum()<<"\n";
+    //std::cout<<matrix.ComputeInnerSumThread()<<"\n";
+
+
+    /*
     hilo::Matrix<ComplexNumber> matrix{10,90000000};
     matrix[0][0] =  {20, 5};
     matrix[1][1] =  {5, -20};
@@ -88,7 +95,7 @@ int main()
 */
 
 
-/*
+    /*
     DotProduct dp;
     std::cout<<dp({1,2,3}, {1,2,3})<<"\n";
 */
@@ -100,7 +107,7 @@ int main()
 
 
 
-/*
+    /*
 
     ComplexNumber a{3, 4}, b{2, -5};
 
@@ -108,7 +115,7 @@ int main()
 */
 
 
-/*
+    /*
     std::vector<float> data(6, 0);
     data[0] = -9;
     data[3] = -20.f;

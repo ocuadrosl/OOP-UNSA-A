@@ -11,7 +11,7 @@
 namespace hilo
 {
 template <typename DataType>
-class Matrix
+class Matrix //outer class
 {
 
     using RowType = std::vector<DataType>;
@@ -32,6 +32,88 @@ public:
     DataType ComputeInnerSum();
     DataType ComputeInnerSumThread();
     DataType ComputeInnerSumThreadV2();
+
+    class Iterator; //promesa...
+
+    Iterator Begin()
+    {
+        return Iterator{Data, 0};
+    }
+
+    Iterator End()
+    {
+        return Iterator{Data, Rows*Columns};
+    }
+
+    class Iterator //inner class
+    {
+    public:
+        Iterator(MatrixType& data, unsigned index):
+            Data{data},
+            CurrentIndex{index}
+        {};
+
+
+        Iterator& operator++() //Next
+        {
+            ++CurrentIndex;
+            return *this;
+        }
+
+        friend bool operator != (const Iterator& itA, const Iterator& itB)
+        {
+            return itA.CurrentIndex != itB.CurrentIndex; //no es optimo!!
+        }
+
+        DataType& operator*() //Set
+        {
+            unsigned row = CurrentIndex / Data[0].size();
+            unsigned col = CurrentIndex % Data[0].size();
+            return Data[row][col];
+        }
+
+        const DataType& operator*() const //Get
+        {
+            unsigned row = CurrentIndex / Data[0].size();
+            unsigned col = CurrentIndex % Data[0].size();
+            return Data[row][col];
+        }
+
+
+
+    private:
+        unsigned CurrentIndex{};
+        MatrixType& Data{};
+
+
+
+    };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -73,8 +155,6 @@ DataType Matrix<DataType>::ComputeInnerSumThreadV2()
 template<typename DataType>
 DataType Matrix<DataType>::ComputeInnerSumThread()
 {
-
-
     auto start = std::chrono::steady_clock::now();
 
     auto rowSum = [this](unsigned rowIndex, DataType& sum)
