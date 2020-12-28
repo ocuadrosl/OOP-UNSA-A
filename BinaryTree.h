@@ -29,7 +29,7 @@ struct Node
 };
 
 /*
-Class Binaty tree
+Class Binary tree
 */
 template <typename Type>
 class BinaryTree
