@@ -13,7 +13,7 @@ template <typename Type>
 struct Node
 {
     //alias for simplicity
-    using NodeTypePtr = std::unique_ptr< Node<Type> >;
+    using NodeTypePtr = std::shared_ptr< Node<Type> >;
 
     //data
     Type Data{};
@@ -26,30 +26,32 @@ struct Node
     NodeTypePtr Left{nullptr};
     NodeTypePtr Right{nullptr};
 
+    NodeTypePtr Parent{nullptr};
+
 };
 
 /*
-Class Binary tree
+Class Binaty tree
 */
 template <typename Type>
 class BinaryTree
 {
 
     //alias for simplicity
-    using NodeTypePtr = std::unique_ptr< Node<Type> >;
+    using NodeTypePtr = std::shared_ptr< Node<Type> >;
 
     //Pinter to Root
     NodeTypePtr Root{nullptr};
 
     //Auxiliary methods
-    auto& Find(const Type& data,  NodeTypePtr& node) ;
+    auto Find(const Type& data,  NodeTypePtr& node, const NodeTypePtr& parent=nullptr) ;
     void Print(const NodeTypePtr& node); //in order
 
 public:
     BinaryTree()=default;
 
     //Main methods
-    const auto& Find(const Type& data) ;
+    const auto& Find(const Type& data); //Find for public use
     const auto& Insert(const Type& data);
     void Print() {Print(Root);};
 
@@ -71,20 +73,22 @@ void BinaryTree<Type>::Print(const NodeTypePtr& node)
 
 
 template<typename Type>
-auto& BinaryTree<Type>::Find(const Type& data,  NodeTypePtr& node)
+auto BinaryTree<Type>::Find(const Type& data,  NodeTypePtr& node, const NodeTypePtr& parent)
 {
+
+    using leafAndParentType = std::tuple<NodeTypePtr&, const NodeTypePtr&>;
 
     if(node == nullptr)
     {
-        return node;
+        return leafAndParentType(node, parent); //returning leaf and parent
     }
 
     if(node->Data == data)
     {
-        return node;
+        return leafAndParentType(node, parent);
     }
 
-    return (node->Data > data) ? Find(data, node->Left) : Find(data, node->Right);
+    return (node->Data > data) ? Find(data, node->Left, node) : Find(data, node->Right, node);
 
 
 }
@@ -92,21 +96,22 @@ auto& BinaryTree<Type>::Find(const Type& data,  NodeTypePtr& node)
 template<typename  Type>
 const auto& BinaryTree<Type>::Find(const Type& data)
 {
-    return Find(data, Root);
+    return std::get<0>(Find(data, Root));
 }
 
 
 template<typename  Type>
 const auto& BinaryTree<Type>::Insert(const Type& data)
 {
-    auto& node = Find(data, Root);
+    auto [leaf, parent] = Find(data, Root);
 
-    if (node == nullptr)
+    if (leaf == nullptr)
     {
-        node = std::make_unique<Node<Type>>(data);
+        leaf = std::make_shared<Node<Type>>(data);
+        leaf->Parent = parent;
     }
 
-    return node;
+    return leaf;
 }
 
 
